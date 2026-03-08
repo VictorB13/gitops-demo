@@ -3,3 +3,7 @@ replicaCount: 2
 ingress:
   enabled: true
   host: dashboard-ui.prod 
+
+image:
+  repository: victorbutkov/demo-app
+  tag: 96ba440f63149cebc25fafb73a525c2ec9bfbd50
