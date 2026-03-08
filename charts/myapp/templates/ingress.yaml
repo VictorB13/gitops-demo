@@ -1,0 +1,18 @@
+{{ if .Values.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.ingress.name }} #ingress name
+spec:
+  rules:
+    - host: {{ .Values.ingress.host }} #the domain name that will be used to access the application
+      http:
+        paths:
+          - path: / 
+            pathType: Prefix
+            backend:
+              service: #the service that the ingress will forward to
+                name: {{ .Values.service.serviceName }}
+                port:
+                  number: {{ .Values.service.port }}
+{{ end }}

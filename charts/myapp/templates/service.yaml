@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:  
+  name: {{ .Values.service.serviceName }} #service name
+spec:
+  type: {{ .Values.service.type }} #service type
+  selector: #the labels that the service will look for in the pods
+    app: {{ .Values.labels.app }}
+  ports: #the ports that the service will listen on and forward to the pods
+    - protocol: TCP
+      port: {{ .Values.service.port }} #the port that the service will listen on
+      targetPort: {{ .Values.service.port }} #the port that the service will forward to in the pods

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }} #deployment name
+  labels:
+    app: {{ .Values.labels.app }} #label for the deployment
+spec:
+    replicas: {{ .Values.replicaCount }} #number of replicas to create
+    selector:
+      matchLabels:
+        app: {{ .Values.labels.app }} #the labels that the deployment will look for in the pods
+    template:
+      metadata:
+        labels:
+          app: {{ .Values.labels.app }} #the labels that the pods will get when the deployment creates them
+      spec:
+        containers:
+        - name: {{ .Values.appName }} #container name
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}" #the image to use for the container
+          ports:
+          - containerPort: {{ .Values.service.port }} #the port that the container will listen on
