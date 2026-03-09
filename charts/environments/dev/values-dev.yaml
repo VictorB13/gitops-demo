@@ -1,5 +1,0 @@
-replicaCount: 1
-
-image:
-  repository: victorbutkov/demo-app
-  tag: a466e3976aa5d873fe0fdac101577fd1147e8506
