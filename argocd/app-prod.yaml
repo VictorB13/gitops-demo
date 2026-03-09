@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: flask-app-prod
+  namespace: argocd #the namespace where ArgoCD is installed (inside the cluster)
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/VictorB13/gitops-demo.git' #the repository where the Helm chart is located
+    targetRevision: main  #the branch to deploy from (main for production)
+    path: charts/myapp
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc' #the Kubernetes API server (in-cluster)
+    namespace: prod  #the namespace to deploy to (prod for production)    
+  syncPolicy: 
+    syncOptions:
+      - CreateNamespace=true 
