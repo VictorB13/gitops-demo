@@ -1,6 +1,6 @@
 image:
   repository: victorbutkov/demo-app
-  tag: 96ba440f63149cebc25fafb73a525c2ec9bfbd50
+  tag: 9c5c38c054e5de7027d97a71fcab3d57a2597009
 
 replicaCount: 1
 
