@@ -1,0 +1,32 @@
+name: Infra-Validation-CI
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+  pull_request:
+    branches: [ "main", "dev" ]
+
+jobs:
+  validate-infra:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 1. Basic YAML Syntax Check
+      - name: YAML Lint
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: charts/myapp/
+          # Uses default config if .yamllint file is not present in the root
+          config_file: .yamllint 
+
+      # 2. Helm Chart Structure Validation
+      - name: Helm Lint
+        run: |
+          helm lint charts/myapp/
+
+      # 3. Logic & Template Rendering Check (Dry Run)
+      - name: Helm Template (Dry Run)
+        run: |
+          helm template my-release charts/myapp/ --values charts/myapp/values.yaml
