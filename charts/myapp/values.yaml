@@ -2,7 +2,7 @@ image:
   repository: victorbutkov/demo-app
   tag: 48e7a875418609e3e9dfaaea849af061c840bee7
 
-replicaCount: 2
+replicaCount: 1
 
 service:
   type: ClusterIP
