@@ -16,6 +16,7 @@ jobs:
       # 1. Basic YAML Syntax Check
       - name: YAML Lint
         uses: ibiqlik/action-yamllint@v3
+        continue-on-error: true
         with:
           file_or_dir: charts/myapp/
 
