@@ -18,8 +18,6 @@ jobs:
         uses: ibiqlik/action-yamllint@v3
         with:
           file_or_dir: charts/myapp/
-          # Uses default config if .yamllint file is not present in the root
-          config_file: .yamllint 
 
       # 2. Helm Chart Structure Validation
       - name: Helm Lint
